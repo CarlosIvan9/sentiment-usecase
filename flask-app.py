@@ -1,14 +1,13 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, render_template_string, jsonify
 
 from huggingface_hub import InferenceClient
 
 my_token='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'
 
-app = Flask(__name__)
 
-@app.route('/')
-def hello_world():
-    return 'Hello, Foo!'
+
+
+app = Flask(__name__)
 
 def get_sentiment(review_raw):
     # Make sure input is a list (output of hf is 3 classes if a string is given, or just the top class if a list is given)
@@ -30,22 +29,52 @@ def get_sentiment(review_raw):
     return sentiments
 
 
+# HTML form template
+form_html = '''
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sentiment App</title>
+</head>
+<body>
+    <h2>Sentiment App</h2>
+    <h3>Enter a review</h3>
+    <form method="POST" action="/predict">
+        <input type="text" name="review" required>
+        <button type="submit">Sentiment</button>
+    </form>
+    {% if sentiment %}
+        <h4> {{ review }}: {{ sentiment }}</h4>
+    {% endif %}
+</body>
+</html>
+'''
 
-@app.route("/predict", methods=["POST"])
-def predict():
-    body = request.get_json()
-    review = body.get("review", "")
+@app.route('/', methods=['GET'])
+def index():
+    return render_template_string(form_html, sentiment=None)
 
-    if not review:
-        return jsonify({"error": "Missing review"}), 400
+@app.route('/predict', methods=['POST'])
+def predict_sentiment(): 
+    if request.is_json:  # Applies for curl requests
+        body = request.get_json()
+        review = body.get("review", "")
+        if not review:
+            return jsonify({"error": "Missing review"}), 400
+        sentiments = get_sentiment(review)
+        return jsonify(sentiments), 200
+
+    else: #Applies for request from html template
+        review = request.form.get('review', '')  
+        sentiments = get_sentiment(review)
+        if len(sentiments)==1:  #Cleaner output in case a single review is given
+            sentiments=sentiments[0]
+        return render_template_string(form_html, sentiment=sentiments, review=review)
     
-    sentiments = get_sentiment(review)
 
-    return jsonify(sentiments), 200
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     app.run(debug=True)
-
 
 
 # To run app you have to do this in the termal (powershell)
