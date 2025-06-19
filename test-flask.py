@@ -1,5 +1,4 @@
 from flask import Flask, request, jsonify
-import requests
 
 from huggingface_hub import InferenceClient
 
@@ -62,4 +61,5 @@ if __name__ == "__main__":
 
 # To test a post (in terminal. Git bash works well, powershell does not):
 #curl -X POST http://127.0.0.1:5000/predict -H "Content-Type: application/json" -d '{"review": "I am alright and you?"}'
-
+# In a list, double members inside it should appear in double quotes
+#curl -X POST http://127.0.0.1:5000/predict -H "Content-Type: application/json" -d '{"review": ["Me again", "Trump is blonde", "I hated it"]}'

@@ -1,2 +1,4 @@
 1- We looked for models hosted elsewhere to not have to possess large memory to store the model, as well as gpus. For 
 hg that is why we opted for the inference api instead of downloading the models
+
+You can access the sentiment classifier via both a post request or an html
