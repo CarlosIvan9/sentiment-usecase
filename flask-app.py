@@ -1,4 +1,5 @@
 from flask import Flask, request, render_template_string, jsonify
+import pandas as pd
 
 from huggingface_hub import InferenceClient
 
@@ -9,24 +10,45 @@ my_token='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'
 
 app = Flask(__name__)
 
-def get_sentiment(review_raw):
+def get_sentiment(reviews):
+    
     # Make sure input is a list (output of hf is 3 classes if a string is given, or just the top class if a list is given)
-    if not isinstance(review_raw, list):
-        review_raw = [review_raw]
+    if not isinstance(reviews, list):
+        reviews = [reviews]
     client=InferenceClient(
         model='cardiffnlp/twitter-roberta-base-sentiment',
         token=my_token
         )
-    output_hf=client.text_classification(review_raw)
-    sentiments=[]
-    for a_review in output_hf:
-        if a_review.label == 'LABEL_2':
-            sentiments.append('Positive')
-        elif a_review.label == 'LABEL_1':
-            sentiments.append('Neutral')
-        elif a_review.label == 'LABEL_0':
-            sentiments.append('Negative')
-    return sentiments
+
+    # Step 1: Inference for all reviews
+    all_rows = []
+    for i, review in enumerate(reviews):
+        output = client.text_classification(review, top_k=None)
+        for item in output:
+            all_rows.append({
+                "review_index": i,
+                "review" : review, 
+                "label": item["label"],
+                "score": item["score"]
+            })
+
+    # Step 2: Create DataFrame
+    df = pd.DataFrame(all_rows)
+
+    # Step 3: Remove 'neutral' and normalize
+    df = df[df["label"].isin(["LABEL_2", "LABEL_0"])]
+    df["score"] = df.groupby("review_index")["score"].transform(lambda x: x / x.sum())
+
+    # Step 4: Extract positive score only
+    df = df[df["label"] == "LABEL_2"].reset_index(drop=True)
+
+    # Step 5: Display as a list
+    df.drop(columns=['label'], inplace=True)
+    df.rename(columns={'score':'positive_score'}, inplace=True)
+
+    outputs_list = ['positive' if score > 0.5 else 'negative' for score in df['positive_score']]
+
+    return outputs_list
 
 
 # HTML form template
