@@ -1,3 +1,6 @@
 huggingface_hub
 flask
 pandas
+gunicorn
+seaborn
+matplotlib
