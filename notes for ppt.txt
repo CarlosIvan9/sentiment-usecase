@@ -5,3 +5,5 @@ You can access the sentiment classifier via both a post request or an html
 
 curl to use in cmd:
 curl -X POST https://sentiment-usecase.onrender.com/predict -H "Content-Type: application/json" -d '{ "review": "my wife is amazing" }'
+
+script to log models can be used for any model (script to generate predictions outputs them in a unified format). hence we run it with argparse
