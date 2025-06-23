@@ -1,0 +1,1 @@
+Model assigns negative sentiment to reviews with connotative negative words (like violence, drugs...) regardless if the review is positive. But it seems better than roberta
