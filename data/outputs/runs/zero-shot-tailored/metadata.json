@@ -1,0 +1,6 @@
+{
+    "model": "zero-shot-tailored",
+    "adaptations": "tailored labels",
+    "inference_time": 92.89608097076416,
+    "other_comments": "Tailoring to try to overcome issues of sentiment classification methods. Labels: a positive movie review (regardless if the movie context is negative), a negative movie review (regardless if the movie context is positive)"
+}

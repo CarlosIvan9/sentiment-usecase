@@ -1,0 +1,6 @@
+{
+    "model": "zero-shot",
+    "adaptations": "simple labels",
+    "inference_time": 87.37277698516846,
+    "other_comments": "Model seems to overcome issues of sentiment classification methods. Labels: a very positive movie review, a very negative movie review"
+}
