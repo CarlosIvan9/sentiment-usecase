@@ -1,0 +1,6 @@
+{
+    "model": "generative-command-a",
+    "adaptations": "",
+    "inference_time": 853.1894288063049,
+    "other_comments": "Rate limit of 10 requests per minute."
+}

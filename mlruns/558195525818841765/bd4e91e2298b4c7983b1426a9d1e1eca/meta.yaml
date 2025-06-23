@@ -1,0 +1,14 @@
+artifact_uri: file:///c:/Users/Carlos%20Ivan/Documents/Projects/sentiment-usecase/mlruns/558195525818841765/bd4e91e2298b4c7983b1426a9d1e1eca/artifacts
+end_time: 1750708466072
+entry_point_name: ''
+experiment_id: '558195525818841765'
+lifecycle_stage: active
+run_id: bd4e91e2298b4c7983b1426a9d1e1eca
+run_name: generative-command-a/
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1750708464341
+status: 3
+tags: []
+user_id: Carlos Ivan
