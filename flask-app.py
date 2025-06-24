@@ -1,3 +1,15 @@
+"""
+flask-app.py
+
+Creates an app and an api to calculate if a movie review is positive or negative.
+
+Usage locally or in a server.
+Usage locally:
+    python flask-app.py 
+"""
+
+
+
 from flask import Flask, request, render_template_string, jsonify
 import pandas as pd
 import ast
@@ -12,7 +24,17 @@ app = Flask(__name__)
 
 
 def get_sentiment(reviews, positive_label, negative_label):
+    """
+    Calculates sentiment of a review or a list of reviews. 
 
+    Args:
+        reviews (str or list): a single review (str) or a list of reviews (list)
+        positive_label (str): label indicating positive review
+        negative_label (str): label indicating negative review
+
+    Returns:
+        outputs_list (list): list with the sentiment of the reviews (positive or negative).
+    """
     # Make sure input is a list (output of hf is 3 classes if a string is given, or just the top class if a list is given)
     if not isinstance(reviews, list):
         reviews = [reviews]
@@ -76,10 +98,22 @@ negative_label='a negative movie review (regardless if the movie context is posi
 
 @app.route('/', methods=['GET'])
 def index():
+    """
+    Redirects to the template to add the reviews. 
+
+    Returns:
+        Template to add the reviews
+    """
     return render_template_string(form_html, sentiment=None)
 
 @app.route('/predict', methods=['POST'])
 def predict_sentiment(): 
+    """
+    Calculates and returns sentiments of a review or a list of reviews. Works both as an api or a webapp.
+
+    Returns:
+        Template with the reviews and their sentiment.
+    """
     if request.is_json:  # Applies for curl requests
         body = request.get_json()
         review = body.get("review", "")
@@ -125,3 +159,6 @@ if __name__ == '__main__':
 
 
 #curl -X POST https://sentiment-usecase.onrender.com/predict -H "Content-Type: application/json" -d '{"review": ["Me again", "Love", "I hated it"]}'
+
+# Test with a big review
+#"One of the other reviewers has mentioned that after watching just 1 Oz episode you'll be hooked. They are right, as this is exactly what happened with me.<br /><br />The first thing that struck me about Oz was its brutality and unflinching scenes of violence, which set in right from the word GO. Trust me, this is not a show for the faint hearted or timid. This show pulls no punches with regards to drugs, sex or violence. Its is hardcore, in the classic use of the word.<br /><br />It is called OZ as that is the nickname given to the Oswald Maximum Security State Penitentary. It focuses mainly on Emerald City, an experimental section of the prison where all the cells have glass fronts and face inwards, so privacy is not high on the agenda. Em City is home to many..Aryans, Muslims, gangstas, Latinos, Christians, Italians, Irish and more....so scuffles, death stares, dodgy dealings and shady agreements are never far away.<br /><br />I would say the main appeal of the show is due to the fact that it goes where other shows wouldn't dare. Forget pretty pictures painted for mainstream audiences, forget charm, forget romance...OZ doesn't mess around. The first episode I ever saw struck me as so nasty it was surreal, I couldn't say I was ready for it, but as I watched more, I developed a taste for Oz, and got accustomed to the high levels of graphic violence. Not just violence, but injustice (crooked guards who'll be sold out for a nickel, inmates who'll kill on order and get away with it, well mannered, middle class inmates being turned into prison bitches due to their lack of street skills or prison experience) Watching Oz, you may become comfortable with what is uncomfortable viewing....thats if you can get in touch with your darker side."
