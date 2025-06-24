@@ -6,3 +6,4 @@ seaborn
 matplotlib
 mlflow
 cohere
+dotenv

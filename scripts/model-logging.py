@@ -18,10 +18,10 @@ def load_predictions_and_metadata(model_name):
     # Make output dir
     try:
         # Works in regular Python scripts
-        base_dir = Path(__file__).resolve().parent
+        base_dir = Path(__file__).resolve().parent.parent
     except NameError:
         # Fallback for Jupyter notebooks and interactive shells
-        base_dir = Path().resolve()
+        base_dir = Path().resolve().parent
 
     path_predictions = base_dir / "data" / 'outputs' / 'runs' / model_name
 

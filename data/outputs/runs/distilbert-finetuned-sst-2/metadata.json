@@ -1,6 +1,6 @@
 {
     "model": "distilbert-finetuned-sst-2",
     "adaptations": "Truncation to 2k characters",
-    "inference_time": 35.53463530540466,
+    "inference_time": 22.185002088546753,
     "other_comments": "Model assigns negative sentiment to reviews with connotative negative words (like violence, drugs...) regardless if the review is positive. But it seems better than roberta"
 }
