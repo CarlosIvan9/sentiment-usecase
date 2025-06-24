@@ -1,3 +1,15 @@
+"""
+flask-app.py
+
+Creates an app and an api to calculate if a movie review is positive or negative.
+
+Usage locally or in a server.
+Usage locally:
+    python flask-app.py 
+"""
+
+
+
 from flask import Flask, request, render_template_string, jsonify
 import pandas as pd
 import ast
@@ -12,7 +24,17 @@ app = Flask(__name__)
 
 
 def get_sentiment(reviews, positive_label, negative_label):
+    """
+    Calculates sentiment of a review or a list of reviews. 
 
+    Args:
+        reviews (str or list): a single review (str) or a list of reviews (list)
+        positive_label (str): label indicating positive review
+        negative_label (str): label indicating negative review
+
+    Returns:
+        outputs_list (list): list with the sentiment of the reviews (positive or negative).
+    """
     # Make sure input is a list (output of hf is 3 classes if a string is given, or just the top class if a list is given)
     if not isinstance(reviews, list):
         reviews = [reviews]
@@ -76,10 +98,22 @@ negative_label='a negative movie review (regardless if the movie context is posi
 
 @app.route('/', methods=['GET'])
 def index():
+    """
+    Redirects to the template to add the reviews. 
+
+    Returns:
+        Template to add the reviews
+    """
     return render_template_string(form_html, sentiment=None)
 
 @app.route('/predict', methods=['POST'])
 def predict_sentiment(): 
+    """
+    Calculates and returns sentiments of a review or a list of reviews. Works both as an api or a webapp.
+
+    Returns:
+        Template with the reviews and their sentiment.
+    """
     if request.is_json:  # Applies for curl requests
         body = request.get_json()
         review = body.get("review", "")

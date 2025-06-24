@@ -1,4 +1,13 @@
 
+"""
+predict-command-a.py
+
+Predicts review sentiments on the test data using the generative model Command A from Cohere. Returns predictions in 
+a pandas df with a format ready to benchmark, and other information of relevance to be analyzed such as inference time.
+
+Usage:
+    python predict-command-a.py 
+"""
 
 import pandas as pd
 import os
@@ -20,6 +29,17 @@ cohere_api_key=os.getenv("COHERE_TOKEN")
 
 
 def get_sentiment(reviews):
+    """
+    Calculates sentiment of a review or a list of reviews using the generative model Command A from Cohere.
+    Due to rate limit issues, there is a gap of 6 seconds between calls to the model. 
+
+    Args:
+        reviews (str or list): a single review (str) or a list of reviews (list)
+
+    Returns:
+        df (pandas dataframe): dataframe containing reviews, their sentiment, probability of being positive, 
+        and predicted sentiment.
+    """
 
     # Make sure input is a list (output of hf is 3 classes if a string is given, or just the top class if a list is given)
     if not isinstance(reviews, list):

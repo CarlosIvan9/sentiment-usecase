@@ -1,6 +1,0 @@
-{
-    "model": "twitter-roberta",
-    "adaptations": "Truncation to 2k characters",
-    "inference_time": 21.57390069961548,
-    "other_comments": "Model assigns negative sentiment to reviews with connotative negative words (like violence, drugs...) regardless if the review is positive"
-}

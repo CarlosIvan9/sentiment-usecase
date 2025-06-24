@@ -1,4 +1,17 @@
 
+"""
+predict-zero-shot.py
+
+Predicts review sentiments on the test data using the zero shot classificator model
+    MoritzLaurer/DeBERTa-v3-large-mnli-fever-anli-ling-wanli. Returns predictions in a pandas df with a format ready to 
+     benchmark, and other information of relevance.
+
+Usage:
+    python predict-zero-shot.py 
+"""
+
+
+
 from huggingface_hub import InferenceClient
 import pandas as pd
 import os
@@ -22,6 +35,19 @@ my_token=os.getenv("HUGGING_FACE_TOKEN")
 
 
 def get_sentiment(reviews, positive_label, negative_label):
+    """
+    Calculates sentiment of a review or a list of reviews using the zero shot classificator model
+    MoritzLaurer/DeBERTa-v3-large-mnli-fever-anli-ling-wanli
+
+    Args:
+        reviews (str or list): a single review (str) or a list of reviews (list)
+        positive_label (str): label indicating positive review
+        negative_label (str): label indicating negative review
+
+    Returns:
+        df (pandas dataframe): dataframe containing reviews, their sentiment, probability of being positive, 
+        and predicted sentiment.
+    """
 
     # Make sure input is a list (output of hf is 3 classes if a string is given, or just the top class if a list is given)
     if not isinstance(reviews, list):

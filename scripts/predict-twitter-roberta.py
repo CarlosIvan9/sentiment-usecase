@@ -1,4 +1,16 @@
 
+"""
+predict-twitter-roberta.py
+
+Predicts review sentiments on the test data using the sentiment analysis model
+    cardiffnlp/twitter-roberta-base-sentiment . Returns predictions in a pandas 
+    df with a format ready to benchmark, and other information of relevance to be analyzed such as inference time.
+
+Usage:
+    python predict-twitter-roberta.py 
+"""
+
+
 from huggingface_hub import InferenceClient
 import pandas as pd
 import os
@@ -22,7 +34,19 @@ my_token=os.getenv("HUGGING_FACE_TOKEN")
 
 
 def get_sentiment(reviews):
-    
+    """
+    Calculates sentiment of a review or a list of reviews using the sentiment model
+    cardiffnlp/twitter-roberta-base-sentiment . Since the model returns also the neutral class, it is dropped here and
+    the remainder of the probabilities scaled to make sure positive and negative scores sum to 1. Length of the reviews is truncated to 2k characters
+    to avoid issues with long reviews. 
+
+    Args:
+        reviews (str or list): a single review (str) or a list of reviews (list)
+
+    Returns:
+        df (pandas dataframe): dataframe containing reviews, their sentiment, probability of being positive, 
+        and predicted sentiment.
+    """
     # Make sure input is a list (output of hf is 3 classes if a string is given, or just the top class if a list is given)
     if not isinstance(reviews, list):
         reviews = [reviews]

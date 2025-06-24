@@ -1,4 +1,12 @@
+"""
+model-logging.py
 
+Given a folder containing predictions and metadata of a specific model, it generates metrics and uploads them to 
+mlflow for benchmarking.
+
+Usage:
+    python model-logging.py --model_name_folder
+"""
 import mlflow
 import pandas as pd
 from pathlib import Path
@@ -14,7 +22,17 @@ import argparse
 
 
 def load_predictions_and_metadata(model_name):
+    """
+    Loads predictions and metadata needed for a particular model. 
 
+    Args:
+        model_name (str): folder containing predictions and metadata of a specific model
+
+    Returns:
+        predictions (pandas dataframe): dataframe containing reviews, their sentiment, probability of being positive, 
+        and predicted sentiment.
+        metadata (dictionary): metadata and other information such as inference time
+    """
     # Make output dir
     try:
         # Works in regular Python scripts
@@ -33,6 +51,9 @@ def load_predictions_and_metadata(model_name):
 
 
 def flatten_dict(d, parent_key='', sep='-'):
+    """
+    Flattens a dictionary.  Used in log_model_to_mlflow to log metrics into mlflow
+    """
     items = {}
     for k, v in d.items():
         new_key = f"{parent_key}{sep}{k}" if parent_key else k
@@ -44,6 +65,15 @@ def flatten_dict(d, parent_key='', sep='-'):
 
 
 def get_l1(df):
+    """
+    Calculates the mean absolute error for a particular dataframe with predictions. 
+
+    Args:
+        df (pandas df): dataframe with predictions
+
+    Returns:
+        l1_loss (float): mean absolute error 
+    """
     # Convert string labels to numeric: 1 if 'positive', 0 if 'negative'
     y_true = (df["Target"] == "positive").astype(int)
     y_pred = df["positive_score"]
@@ -53,6 +83,16 @@ def get_l1(df):
     return l1_loss
 
 def l1_per_label(df):
+    """
+    Calculates the mean absolute error for a particular dataframe with predictions, slicing per class. 
+
+    Args:
+        df (pandas df): dataframe with predictions
+
+    Returns:
+        mae_positive (float): mean absolute error of records with positive review
+        mae_negative (float): mean absolute error of records with negative review
+    """
     # Convert string labels to numeric
     y_pred = df["positive_score"]
 
@@ -70,7 +110,14 @@ def l1_per_label(df):
 
 
 def log_model_to_mlflow(predictions, metadata):
+    """
+    Logs metrics and metadata of a model into mlflow. 
 
+    Args:
+        predictions (pandas df): dataframe with predictions
+        metadata (dict): dictionary with metadata and other interesting information to be logged.
+
+    """
     class_metrics=classification_report(predictions.Target, predictions.Prediction, output_dict=True)
     flat_class_metrics =  flatten_dict(class_metrics)
 

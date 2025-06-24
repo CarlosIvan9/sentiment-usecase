@@ -1,4 +1,15 @@
 
+"""
+predict-distilbert-sst.py
+
+Predicts review sentiments on the test data using the sentiment analysis model
+    distilbert/distilbert-base-uncased-finetuned-sst-2-english . Returns predictions in a pandas 
+    df with a format ready to benchmark, and other information of relevance to be analyzed such as inference time.
+
+Usage:
+    python predict-distilbert-sst.py 
+"""
+
 
 from huggingface_hub import InferenceClient
 import pandas as pd
@@ -20,7 +31,18 @@ my_token=os.getenv("HUGGING_FACE_TOKEN")
 
 
 def get_sentiment(reviews):
+    """
+    Calculates sentiment of a review or a list of reviews using the sentiment model
+    distilbert/distilbert-base-uncased-finetuned-sst-2-english . Length of the reviews is truncated to 2k characters
+    to avoid issues with long reviews. 
 
+    Args:
+        reviews (str or list): a single review (str) or a list of reviews (list)
+
+    Returns:
+        df (pandas dataframe): dataframe containing reviews, their sentiment, probability of being positive, 
+        and predicted sentiment.
+    """
     # Make sure input is a list (output of hf is 3 classes if a string is given, or just the top class if a list is given)
     if not isinstance(reviews, list):
         reviews = [reviews]
