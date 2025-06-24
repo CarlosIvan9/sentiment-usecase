@@ -1,0 +1,14 @@
+artifact_uri: file:///c:/Users/Carlos%20Ivan/Documents/Projects/sentiment-usecase/mlruns/558195525818841765/3815175341df40408a5ebe5bed30a9d2/artifacts
+end_time: 1750685292295
+entry_point_name: ''
+experiment_id: '558195525818841765'
+lifecycle_stage: active
+run_id: 3815175341df40408a5ebe5bed30a9d2
+run_name: distilbert-finetuned-sst-2/Truncation to 2k characters
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1750685290433
+status: 3
+tags: []
+user_id: Carlos Ivan

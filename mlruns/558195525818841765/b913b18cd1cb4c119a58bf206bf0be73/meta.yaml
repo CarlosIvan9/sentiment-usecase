@@ -1,0 +1,15 @@
+artifact_uri: file:///c:/Users/Carlos%20Ivan/Documents/Projects/sentiment-usecase/mlruns/558195525818841765/b913b18cd1cb4c119a58bf206bf0be73/artifacts
+deleted_time: 1750587576282
+end_time: 1750586170842
+entry_point_name: ''
+experiment_id: '558195525818841765'
+lifecycle_stage: deleted
+run_id: b913b18cd1cb4c119a58bf206bf0be73
+run_name: twitter-roberta/Truncation to 2k characters
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1750586168842
+status: 3
+tags: []
+user_id: Carlos Ivan

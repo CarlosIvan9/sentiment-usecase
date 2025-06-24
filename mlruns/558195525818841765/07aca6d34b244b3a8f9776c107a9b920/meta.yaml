@@ -1,0 +1,14 @@
+artifact_uri: file:///c:/Users/Carlos%20Ivan/Documents/Projects/sentiment-usecase/mlruns/558195525818841765/07aca6d34b244b3a8f9776c107a9b920/artifacts
+end_time: 1750694618745
+entry_point_name: ''
+experiment_id: '558195525818841765'
+lifecycle_stage: active
+run_id: 07aca6d34b244b3a8f9776c107a9b920
+run_name: zero-shot/simple labels
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1750694617078
+status: 3
+tags: []
+user_id: Carlos Ivan
