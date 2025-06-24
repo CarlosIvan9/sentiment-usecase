@@ -7,9 +7,8 @@ This project performs binary classification to determine if a movie review is po
 ## Table of Contents
 - [Project Overview](#project-overview)
 - [Setup & Installation](#setup--installation)
-- [Usage](#usage)
-- [Models & Benchmarking](#models--benchmarking)
 - [Project Structure](#project-structure)
+- [Models & Benchmarking](#models--benchmarking)
 - [Demo](#demo)
 - [Version Control Workflow](#version-control-workflow)
 - [Future Improvements](#future-improvements)
@@ -19,7 +18,26 @@ This project performs binary classification to determine if a movie review is po
 
 ## Project Overview
 
-This project performs binary classification to determine if a movie review is positive or negative. For this, several pre-trained NLP models were tested. Model selection was done on a test dataset consisting of 100 movie reviews.
+This project performs binary classification to determine if a movie review is positive or negative. Several pre-trained NLP models were compared on a test dataset consisting of 100 movie reviews. After that, the selected model was deployed as a REST API.
+
+---
+
+## Setup & Installation
+
+### Python Version
+This project was developed and tested with Python 3.11
+
+### Virtual environments
+There are 2 different requirements files: 
+
+* requirements.txt : libraries needed for the deployment of the api
+* requirements-dev.txt : libraries needed to run development scripts
+
+---
+
+## Project structure
+
+dfgdfgfdgg
 
 ---
 
