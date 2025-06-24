@@ -15,3 +15,5 @@ zero shot is adapted exclusively for movie reviews. sentiment methods to overall
 Some models like meta-llama/Meta-Llama-3-70B-Instruct where not tried due to very high latency (~49 seconds per input)
 
 decoders are too slow bc i had to add sleep due to rate limits on my free account
+
+feed llm with more than 1 review at a time could have worked for rate limits
