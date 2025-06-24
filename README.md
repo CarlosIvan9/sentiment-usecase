@@ -5,9 +5,9 @@ This project performs binary classification to determine if a movie review is po
 ---
 
 ## Table of Contents
-- [Project Overview](#project-overview)
-- [Setup & Installation](#setup--installation)
-- [Project Structure](#project-structure)
+- [Project overview](#project-overview)
+- [Setup & installation](#setup--installation)
+- [Project structure](#project-structure)
 - [Approach](#approach)
 - [Models](#models)
 - [Metrics](#metrics)
@@ -17,13 +17,13 @@ This project performs binary classification to determine if a movie review is po
 
 ---
 
-## Project Overview
+## Project overview
 
 This project performs binary classification to determine if a movie review is positive or negative. Several pre-trained NLP models were compared on a test dataset consisting of 100 movie reviews. After that, the selected model was deployed as a REST API.
 
 ---
 
-## Setup & Installation
+## Setup & installation
 
 ### Python Version
 This project was developed and tested with Python 3.11
@@ -70,15 +70,15 @@ TALKHEREABOUT THE MODELS
 
 To ensure a robust comparison, we tracked and compared each model using the following performance metrics:
 
-Classification metrics:
+**Classification metrics**
 
 Precision, Recall, and F1-Score (both per class and aggregated)
 
-Regression-style metric:
+**Regression-style metric:**
 
 Mean Absolute Error (MAE) on the raw prediction scores (both per class and overall), used to better understand the distribution and confidence levels of model outputs. MAE was selected for its interpretability and unit-consistency.
 
-Efficiency metric:
+**Efficiency metric:**
 
 Inference time: Measured the average time required by each model to generate predictions on the test set, critical for understanding deployment feasibility.
 
