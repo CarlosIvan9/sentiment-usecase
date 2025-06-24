@@ -37,7 +37,16 @@ There are 2 different requirements files:
 
 ## Project structure
 
-dfgdfgfdgg
+All that is needed to run any of the scripts can be found in the repository, except for the tokens to access Hugging Face and Cohere models. We decided to keep also the data here since the size of the files is very small (input data is only 130KB).
+
+The structure of the repository is explained as follows:
+
+* **data:** includes both input data and output data (models' predictions, metadata)
+* **docs:** a presentation of the project
+* **mlruns:** files needed to visualize the mlflow dashboard
+* **scripts:** scripts used to generate predictions for each model, calculate metrics, and log them to mlflow
+
+The deployed app and requirements are on the root location.
 
 ---
 
@@ -106,15 +115,3 @@ The url of the api is the following:
 https://sentiment-usecase.onrender.com/
 
 
----
-
-## ⚙️ Setup & Installation
-
-Clone the repository and install dependencies:
-
-```bash
-git clone https://github.com/yourusername/emotion-evaluator.git
-cd emotion-evaluator
-python -m venv venv
-source venv/bin/activate   # On Windows: venv\Scripts\activate
-pip install -r requirements.txt
