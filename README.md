@@ -8,11 +8,12 @@ This project performs binary classification to determine if a movie review is po
 - [Project Overview](#project-overview)
 - [Setup & Installation](#setup--installation)
 - [Project Structure](#project-structure)
-- [Models & Benchmarking](#models--benchmarking)
-- [Demo](#demo)
-- [Version Control Workflow](#version-control-workflow)
-- [Future Improvements](#future-improvements)
-- [Contact](#contact)
+- [Approach](#approach)
+- [Models](#models)
+- [Metrics](#metrics)
+- [Experiment tracking](#experiment-tracking)
+- [Model selection](#model-selection)
+- [Deployment](#deployment)
 
 ---
 
@@ -55,6 +56,13 @@ The deployed app and requirements are on the root location.
 We evaluated five different sentiment analysis models. Four of these consisted of transformer-based models hosted on Hugging Face, plus a generative model of Cohere.
 
 Predictions were generated and evaluated on a test set of 100 reviews from the IMDB movie reviews dataset, each labeled with a ground-truth sentiment.
+
+---
+
+## Models
+
+TALKHEREABOUT THE MODELS
+
 
 ---
 
