@@ -1,0 +1,8 @@
+#Requirements for development and benchmarking
+huggingface_hub
+flask
+pandas
+seaborn
+matplotlib
+mlflow
+cohere
