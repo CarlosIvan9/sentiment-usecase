@@ -149,4 +149,4 @@ curl -X POST https://sentiment-usecase.onrender.com/predict -H "Content-Type: ap
 
 ## Future work
 
-more in depth ERROR ANALYSIS
+If we had more time, we would have dug deeper into the examples wrongly classified to try to detect patterns, and if possible, correct them. 
