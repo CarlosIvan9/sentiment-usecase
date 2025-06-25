@@ -1,6 +1,6 @@
 #Requirements for the flask app
-huggingface_hub
-flask
-pandas
+huggingface_hub==0.33.0
+flask==3.1.1
+pandas==2.3.0
 gunicorn
-dotenv
+dotenv==0.9.9
