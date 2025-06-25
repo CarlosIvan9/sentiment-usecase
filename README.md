@@ -134,7 +134,7 @@ The selected model was deployed as a REST API using Flask and Render. The API in
 
  * An optional web application interface, allowing users to interact with the model through a simple, user-friendly UI.
 
-This deployment ensures both programmatic and interactive access to the model.
+This deployment ensures both programmatic and interactive access to the model. Furthermore, the API accepts as input either a movie review as a string, or a set of movie reviews as a list of strings.
 
 The url of the api is the following:
 
