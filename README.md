@@ -118,11 +118,11 @@ We tested if generative models could bring an even better performance. For that,
 
 From the five approaches evaluated, the one we will deploy was selected based on a combination of:
 
-* Highest weighted F1-score, ensuring balanced performance across both classes.
+* Highest macro F1-score, ensuring balanced performance across both classes.
 
 * Fast inference time, making it suitable for production deployment.
 
-This was approach 4, the DeBERTa-v3-large-mnli-fever-anli-ling-wanli model that used tailored labels. This model came up second in weighted F1-score, only behind Command A. However, the inference time of Command A was significantly longer than this one due to rate limits, and since the API is thought to receive as input both a single review and a list of reviews, we decided to sacrifice some performance for faster latency.
+This was approach 4, the DeBERTa-v3-large-mnli-fever-anli-ling-wanli model that used tailored labels. This model came up second in macro F1-score, only behind Command A. However, the inference time of Command A was significantly longer than this one due to rate limits, and since the API is thought to receive as input both a single review and a list of reviews, we decided to sacrifice some performance for faster latency.
 
 ---
 
