@@ -3,3 +3,4 @@ huggingface_hub
 flask
 pandas
 gunicorn
+dotenv

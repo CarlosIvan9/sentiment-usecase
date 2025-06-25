@@ -12,11 +12,13 @@ Usage locally:
 
 from flask import Flask, request, render_template_string, jsonify
 import pandas as pd
+import os
 import ast
 from huggingface_hub import InferenceClient
+from dotenv import load_dotenv
+load_dotenv()  # Loads from .env
 
-my_token='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'
-
+my_token=os.getenv("HUGGING_FACE_TOKEN")
 
 
 
