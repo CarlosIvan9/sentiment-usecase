@@ -15,8 +15,8 @@ import pandas as pd
 import os
 import ast
 from huggingface_hub import InferenceClient
-from dotenv import load_dotenv
-load_dotenv()  # Loads from .env
+#from dotenv import load_dotenv
+#load_dotenv()  # Loads from .env
 
 my_token=os.getenv("HUGGING_FACE_TOKEN")
 
